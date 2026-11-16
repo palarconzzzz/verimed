@@ -2,9 +2,12 @@
   "name": "verimed",
   "version": "1.0.0",
   "private": true,
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
-    "build": "cd verimed-app && npm install && npm run build",
-    "start": "cd verimed-backend && npm install && node server.js",
+    "build": "npm install --prefix verimed-app && npm run build --prefix verimed-app && npm install --prefix verimed-backend",
+    "start": "node verimed-backend/server.js",
     "dev:backend": "cd verimed-backend && npm run dev",
     "dev:frontend": "cd verimed-app && npm run dev"
   }

@@ -1,4 +1,4 @@
-# Configuración para Railway (monorepo completo)
+# Railway monorepo config
 
 [build]
 builder = "NIXPACKS"
@@ -6,5 +6,6 @@ buildCommand = "npm run build"
 
 [deploy]
 startCommand = "npm start"
+healthcheckPath = "/api/health"
 restartPolicyType = "ON_FAILURE"
 restartPolicyMaxRetries = 10
