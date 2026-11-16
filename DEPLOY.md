@@ -1,40 +1,26 @@
-# Despliegue en Railway
+# Despliegue completo en Railway (una sola URL)
 
-## Backend (Node.js + Express)
+El proyecto está preparado para que **un solo servicio en Railway** sirva tanto la página web como la API.
 
-1. Entra a [railway.com](https://railway.com) e inicia sesión con GitHub.
-2. Haz clic en **New Project** → **Deploy from GitHub repo**.
-3. Selecciona el repositorio `palarconzzzz/verimed`.
-4. En la configuración del servicio:
-   - **Root Directory**: `verimed-backend`
-   - Railway detectará automáticamente Node.js.
-5. Ve a **Variables** y agrega:
-   - `JWT_SECRET` = una clave larga y aleatoria (ej. `openssl rand -hex 32`)
+## Pasos
+
+1. Entra a [railway.com](https://railway.com) e inicia sesión con tu cuenta de GitHub.
+2. Clic en **New Project** → **Deploy from GitHub repo**.
+3. Selecciona el repositorio **palarconzzzz/verimed**.
+4. Railway detectará el `railway.toml` y el monorepo.
+5. En **Variables** agrega:
+   - `JWT_SECRET` = una clave larga y secreta
    - `NODE_ENV` = `production`
 6. En **Settings** → **Networking** → **Generate Domain**.
 
-El backend quedará disponible en una URL tipo:
-`https://verimed-backend-production.up.railway.app`
+Obtendrás una URL pública (ej. `https://verimed-production.up.railway.app`) donde puedes abrir la página completa.
 
-## Variables importantes
+## Desarrollo local
 
-| Variable | Valor recomendado |
-|----------|-------------------|
-| `JWT_SECRET` | Clave secreta larga (obligatoria en producción) |
-| `PORT` | Railway la asigna automáticamente |
+```bash
+# Backend
+npm run dev:backend
 
-## Después del despliegue
-
-Actualiza el frontend (`.env` o variable de entorno) con:
-
+# Frontend (otra terminal)
+npm run dev:frontend
 ```
-VITE_API_URL=https://tu-dominio.up.railway.app
-```
-
-## Frontend
-
-Para el frontend (React + Vite) se recomienda **Vercel** o **Netlify**:
-- Conecta el mismo repo
-- Root directory: `verimed-app`
-- Build command: `npm run build`
-- Output directory: `dist`
